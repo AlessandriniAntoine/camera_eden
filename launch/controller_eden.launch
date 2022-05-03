@@ -1,0 +1,15 @@
+<launch>
+
+  <node name="camera" pkg="camera_eden" type="camera_node.py" output="screen"/>
+
+  <!-- <node name="button" pkg="button" type="button" output="screen"/> -->
+
+  <!-- <node name="rate_limiter" pkg="rate_limiter" type="rate_limiter" output="screen"/> -->
+
+  <!-- <node name="joy" pkg="joy" type="joy_node" output="screen"/> -->
+
+  <!-- <node name="axes" pkg="axes" type="axes" output="screen"/> -->
+
+  <node name="motors" pkg="motors_eden" type="motorsNode.py" output="screen"/>
+
+</launch>
