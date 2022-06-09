@@ -25,7 +25,7 @@ Open an other terminal and source the setup of you workspace and run the package
 
 ```console
 ~ $ cd eden_ws && source devel/setup.zsh
-~/eden_ws $ rosrun camera video.py
+~/eden_ws $ rosrun camera_edens camera_node.py
 ```
 
 ### Node
@@ -43,3 +43,4 @@ This package has two node :
 
 - Python 3
 - Ros1 noetic
+- OpenCv 4.2

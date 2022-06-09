@@ -98,6 +98,7 @@ while True:
         cv2.imshow("Mask", mask)
         cv2.putText(frame_left, "mode : {}  mode[o]:{}".format(etat.etat.data, "CamShift" if mode else "meanshift",), (10, 40), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), 1)
     
+    # put tomato on base
     if etat.etat.data == 3:
         point_robot.change_value(x1,y1,z1)
         point_robot.publish_topic()
@@ -106,15 +107,18 @@ while True:
         time.sleep(1)
         etat.etat.data = 6
         etat.publish_topic()
-        
+    
+    # sleep state
     elif etat.etat.data== 6 :
         point_robot.change_value(x2,y2,z2)
         point_robot.publish_topic()
 
+    # close hand command
     elif etat.etat.data == 2:
         hand.close()
         etat.change_etat(6)
     
+    # moving command 
     elif etat.etat.data == 4:
         z = compute_distance(roi_x,roi_y,roi_x+w,roi_y+h,polynome)
         cv2.line(frame_left, (roi_x, roi_y), (roi_x+w, roi_y+h), line_color, thickness=line_thickness)
@@ -130,23 +134,23 @@ while True:
 
     key=cv2.waitKey(10)&0xFF
    
-   #arret
+   #stop
     if key & 0XFF == ord('q'):  #If stnnatement to stop loop,Letter 'q' is the escape key
         etat.change_etat(5)
         etat.publish_topic()
         break                     #get out of loop   
 
-    #deplacement
+    #moving
     if key & 0xFF == ord('d'):
         etat.change_etat(1)
         etat.publish_topic()
 
-    # attraper
+    # pick
     elif key & 0xFF == ord('a'):
         etat.change_etat(2)
         etat.publish_topic()
 
-    #poser 
+    #put tomato 
     elif key & 0xFF == ord('p'):
         etat.change_etat(3)
         etat.publish_topic()
